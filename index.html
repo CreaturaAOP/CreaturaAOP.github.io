@@ -3,29 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Countdown Timer with Music</title>
+<title>Countdown Timer</title>
 <style>
     body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
         margin: 0;
-        background-color: #f0f0f0;
-        font-family: Arial, sans-serif;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+    }
+    #background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('Mountains.jpg');
+        background-size: cover;
+        background-position: center;
+        z-index: -1;
+    }
+    #foreground {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2;
+    }
+    #foreground img {
+        width: 100%;
+        height: 100vh;
+    }
+	#foreground_foreground {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 3;
+    }
+    #foreground_foreground img {
+        width: 100%;
+        height :100vh;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: transform 1s ease-out;
     }
     #countdown-container {
         display: flex;
         align-items: center;
+        justify-content: center;
+        height: calc(100% - 100px); /* Adjust countdown height to accommodate foreground image */
     }
     #countdown {
         font-size: 2em;
         margin: 0 20px;
     }
     .image-container {
-        width: 100px;
-        height: 100px;
+        width: 400px; /* Set the width of the cow image */
+        height: 400px; /* Set the height of the cow image */
         position: relative;
+        z-index: 1; /* Ensure the cow image appears in the foreground */
     }
     .image-container img {
         width: 100%;
@@ -37,7 +75,9 @@
 </style>
 </head>
 <body>
-<iframe width="1" height="1" wmode="transparent" src="https://youtu.be/9jK-NcRmVcw?si=CUbIfN7HsndCemQh" frameborder="0" allowfullscreen>
+<audio id="background-music" src="non_copyright.mp3" loop></audio>
+<div id="background"></div>
+<div id="countdown-container">
     <div class="image-container">
         <img src="Cow.png" alt="Cow">
     </div>
@@ -45,6 +85,12 @@
     <div class="image-container">
         <img src="Cow.png" alt="Cow" class="flipped">
     </div>
+</div>
+<div id="foreground">
+    <img src="grass.png" alt="Grass">
+</div>
+<div id="foreground_foreground">
+    <img src="curtain.jpg" alt="Curtain" id="curtain">
 </div>
 
 <script>
@@ -76,6 +122,26 @@
             document.getElementById("countdown").innerHTML = "EXPIRED";
         }
     }, 1000);
+	
+	
+    // Play background music when the user clicks
+    document.body.addEventListener('click', function() {
+        var audio = document.getElementById('background-music');
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    });
+	
+	    window.onload = function() {
+        document.getElementById('curtain').style.transform = 'translateY(0)';
+    };
+
+    document.body.addEventListener('click', function() {
+        var curtain = document.getElementById('curtain');
+        curtain.style.transform = 'translateY(-100%)';
+    });
 </script>
 </body>
 </html>
