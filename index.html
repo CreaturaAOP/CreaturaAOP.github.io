@@ -1,147 +1,161 @@
+<!--MADE WITH LOVE BY BIXENTE & CLAR-->
+<!--copyright 2024-end of time-->
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Countdown Timer</title>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        overflow: hidden;
-        position: relative;
-    }
-    #background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('Mountains.jpg');
-        background-size: cover;
-        background-position: center;
-        z-index: -1;
-    }
-    #foreground {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        z-index: 2;
-    }
-    #foreground img {
-        width: 100%;
-        height: 100vh;
-    }
-	#foreground_foreground {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        z-index: 3;
-    }
-    #foreground_foreground img {
-        width: 100%;
-        height :100vh;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        transition: transform 1s ease-out;
-    }
-    #countdown-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: calc(100% - 100px); /* Adjust countdown height to accommodate foreground image */
-    }
-    #countdown {
-        font-size: 2em;
-        margin: 0 20px;
-    }
-    .image-container {
-        width: 400px; /* Set the width of the cow image */
-        height: 400px; /* Set the height of the cow image */
-        position: relative;
-        z-index: 1; /* Ensure the cow image appears in the foreground */
-    }
-    .image-container img {
-        width: 100%;
-        height: 100%;
-    }
-    .flipped {
-        transform: scaleX(-1);
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Auvergne</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('mountains.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        #foreground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 2;
+        }
+
+        #foreground img {
+            width: 100%;
+            height: 100vh;
+        }
+
+        #curtain_foreground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 3;
+        }
+
+        #curtain_foreground img {
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transition: transform 1s ease-out;
+        }
+
+        #countdown-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: calc(100% - 100px);
+        }
+
+        #countdown {
+            font-size: 2em;
+            margin: 0 20px;
+        }
+
+        .image-container {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .flipped {
+            transform: scaleX(-1);
+        }
+    </style>
 </head>
+
 <body>
-<audio id="background-music" src="non_copyright.mp3" loop></audio>
-<div id="background"></div>
-<div id="countdown-container">
-    <div class="image-container">
-        <img src="Cow.png" alt="Cow">
+    <audio id="background-music" src="non_copyright.mp3" loop></audio>
+    <div id="background"></div>
+    <div id="countdown-container">
+        <div class="image-container">
+            <img src="cow.png" alt="Cow">
+        </div>
+        <div id="countdown"></div>
+        <div class="image-container">
+            <img src="cow.png" alt="Cow" class="flipped">
+        </div>
     </div>
-    <div id="countdown"></div>
-    <div class="image-container">
-        <img src="Cow.png" alt="Cow" class="flipped">
+    <div id="foreground">
+        <img src="grass.png" alt="Grass">
     </div>
-</div>
-<div id="foreground">
-    <img src="grass.png" alt="Grass">
-</div>
-<div id="foreground_foreground">
-    <img src="curtain.jpg" alt="Curtain" id="curtain">
-</div>
+    <div id="curtain_foreground">
+        <img src="curtain.jpg" alt="Curtain" id="curtain">
+    </div>
 
-<script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("May 2, 2024 12:00:00 GMT+0200").getTime();
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("May 2, 2024 12:00:00 GMT+0200").getTime();
 
-    // Update the countdown every 1 second
-    var x = setInterval(function() {
+        // Update the countdown every 1 second
+        var x = setInterval(function () {
 
-        // Get the current date and time
-        var now = new Date().getTime();
+            // Get the current date and time
+            var now = new Date().getTime();
 
-        // Find the distance between now and the countdown date
-        var distance = countDownDate - now;
+            // Find the distance between now and the countdown date
+            var distance = countDownDate - now;
 
-        // Calculate time units
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            // Calculate time units
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Display the countdown
-        document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-        + minutes + "m " + seconds + "s ";
+            // Display the countdown
+            document.getElementById("countdown").innerHTML = days + "j " + hours + "h "
+                + minutes + "m " + seconds + "s ";
 
-        // If the countdown is over, display text
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("countdown").innerHTML = "EXPIRED";
-        }
-    }, 1000);
-	
-	
-    // Play background music when the user clicks
-    document.body.addEventListener('click', function() {
-        var audio = document.getElementById('background-music');
-        if (audio.paused) {
-            audio.play();
-        } else {
-            audio.pause();
-        }
-    });
-	
-	    window.onload = function() {
-        document.getElementById('curtain').style.transform = 'translateY(0)';
-    };
+            // If the countdown is over, display text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
 
-    document.body.addEventListener('click', function() {
-        var curtain = document.getElementById('curtain');
-        curtain.style.transform = 'translateY(-100%)';
-    });
-</script>
+
+        // Play background music when the user clicks
+        document.body.addEventListener('click', function () {
+            var audio = document.getElementById('background-music');
+            (audio.paused) ? audio.play() : audio.pause();
+        });
+
+        window.onload = function () {
+            document.getElementById('curtain').style.transform = 'translateY(0)';
+        };
+
+        document.body.addEventListener('click', function () {
+            var curtain = document.getElementById('curtain');
+            curtain.style.transform = 'translateY(-100%)';
+        });
+    </script>
 </body>
+
 </html>
+
