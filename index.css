@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('Mountains.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+#foreground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+}
+#foreground img {
+    width: 100%;
+    height: 100vh;
+}
+#curtain_foreground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+}
+#curtain_foreground img {
+    width: 100%;
+    height :100vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: transform 1s ease-out;
+}
+#countdown-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 100px); /* Adjust countdown height to accommodate foreground image */
+}
+#countdown {
+    font-size: 2em;
+    margin: 0 20px;
+}
+.image-container {
+    width: 400px; /* Set the width of the cow image */
+    height: 400px; /* Set the height of the cow image */
+    position: relative;
+    z-index: 1; /* Ensure the cow image appears in the foreground */
+}
+.image-container img {
+    width: 100%;
+    height: 100%;
+}
+.flipped {
+    transform: scaleX(-1);
+}
