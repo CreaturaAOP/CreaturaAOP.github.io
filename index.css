@@ -52,16 +52,16 @@ body {
     font-size: 2em;
     margin: 0 20px;
 }
-.image-container {
+.image-container .image-container-reversed {
     width: 400px; /* Set the width of the cow image */
     height: 400px; /* Set the height of the cow image */
     position: relative;
     z-index: 1; /* Ensure the cow image appears in the foreground */
 }
-.image-container img {
+.image-container img .image-container-reversed img {
     width: 100%;
     height: 100%;
 }
-.flipped {
+.image-container-reversed {
     transform: scaleX(-1);
 }
