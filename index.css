@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('mountains.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+#foreground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+
+#foreground img {
+    size: cover;
+    position: center;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#curtain_foreground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+}
+
+#curtain_foreground img {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: transform 1s ease-out;
+}
+
+#countdown-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 100px);
+}
+
+#countdown {
+    font-size: 2em;
+    margin: 0 20px;
+}
+
+.image-container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    z-index: 1;
+}
+
+.image-container-reversed {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    z-index: 1;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    animation: rotateCow 1s infinite alternate;
+}
+
+@keyframes rotateCow {
+    0% {
+        transform: rotate(-10deg);
+    }
+
+    100% {
+        transform: rotate(10deg);
+    }
+}
+
+.image-container-reversed img {
+    width: 100%;
+    height: 100%;
+    animation: rotateCow-reversed 1s infinite alternate;
+}
+
+@keyframes rotateCow-reversed {
+    0% {
+        transform: scaleX(-1) rotate(-10deg);
+    }
+
+    100% {
+        transform: scaleX(-1) rotate(10deg);
+    }
+}
